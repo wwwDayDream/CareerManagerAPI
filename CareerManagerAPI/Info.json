@@ -1,0 +1,8 @@
+{
+  "Id": "CareerManagerAPI",
+  "DisplayName": "Career Manager API",
+  "Version": "0.1.0",
+  "Author": "wwwDayDream",
+  "AssemblyName": "CareerManagerAPI.dll",
+  "EntryMethod": "CareerManagerAPI.Plugin.Load"
+}
