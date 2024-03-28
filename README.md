@@ -1,4 +1,4 @@
-## <center>[CareerManagerAPI](nexusModsLink)</center>
+## <center>[CareerManagerAPI](https://www.nexusmods.com/derailvalley/mods/951)</center>
 
 ---
 
