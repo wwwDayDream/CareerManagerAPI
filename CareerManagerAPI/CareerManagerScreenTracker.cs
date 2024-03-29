@@ -43,13 +43,9 @@ public class CareerManagerScreenTracker : MonoBehaviour
     {
         if (MainScreenEntries.Exists(entry => entry.Text == text)) return false;
 
-        var newGo = new GameObject(text, typeof(TDisplayScreen))
-        {
-            transform =
-            {
-                parent = MainScreen!.feesScreen.transform.parent
-            }
-        };
+        var newGo = new GameObject(text, typeof(TDisplayScreen));
+
+        newGo.transform.SetParent(MainScreen!.feesScreen.transform.parent, false);
 
         MainScreenEntries.Add(new CareerManagerMainScreenEntry(text, (IDisplayScreen)newGo.GetComponent(typeof(TDisplayScreen)), canConfirm ?? CareerManagerAPI.AlwaysTrue, after, before));
         return true;
