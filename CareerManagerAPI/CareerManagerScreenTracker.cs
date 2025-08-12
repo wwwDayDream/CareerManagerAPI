@@ -10,9 +10,11 @@ namespace CareerManagerAPI;
 
 public class CareerManagerScreenTracker : MonoBehaviour
 {
-    public CareerManagerMainScreen? MainScreen { get; set; } = null;
+    public CareerManagerMainScreen? MainScreen { get; set; }
+    public TrainCar? TrainCar { get; set; }
+    public StationController? StationController { get; set; }
+    public string ManagerLocation { get; set; }
     private List<CareerManagerMainScreenEntry> MainScreenEntries { get; set; } = [];
-    private string StationLocation => MainScreen?.transform.parent?.parent?.parent?.name ?? "";
 
     public void Start()
     {
@@ -31,9 +33,9 @@ public class CareerManagerScreenTracker : MonoBehaviour
         MainScreenEntries.Add(new CareerManagerMainScreenEntry(
             CareerManagerLocalization.STATS, MainScreen.statsScreen, CareerManagerAPI.AlwaysTrue));
         
-        CareerManagerAPI.OnStationCareerManagerAwake(this, StationLocation);
+        CareerManagerAPI.OnStationCareerManagerAwake(this, StationController, TrainCar, ManagerLocation);
         
-        Plugin.Logger?.Log($"Initialized Career Manager @ {StationLocation}");
+        Plugin.Logger?.Log($"Initialized Career Manager - {ManagerLocation}");
 
         MainScreenUpdated();
     }

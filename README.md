@@ -40,12 +40,14 @@ public bool CanEnter(out string err){
 }
 
 // Somewhere Later 
-CareerManagerAPI.StationCareerManagerAwake += (screen, screensRoot, stationName) => {
-    
-    // OilWellNorth, OilWellCentral, Farm, IronOreMineWest, CoalMine, IronOreMineEast, 
-    // CitySW, GoodsFactory, SteelMill, MachineFactory, FoodFactory, Harbor, Sawmill, 
-    // ForestSouth, ForestCentral
-    if (stationName == "SteelMill") {
+CareerManagerAPI.CareerManagerAwake += (tracker, locationName, station, trainCar) => {
+    // station and trainCar are exclusive; A Career Manager can be at a station or on a trainCar.
+    // locationName can be any of the following (and maybe more if other mods do weird stuff)
+    // Oil Well North, Oil Well Central, Farm, Iron Ore Mine West, Military Base, Coal Mine, Iron Ore Mine East, 
+    // Coal Mine South, City West, Goods Factory & Town, Steel Mill, Machine Factory & Town, Food Factory & Town, 
+    // Coal Power Plant, Oil Refinery, Harbor & Town, Sawmill, Forest South, Forest Central, City South, 
+    // Caboose Red
+    if (locationName == "Steel Mill") {
         // bool TryAddToMainScreen(string text, IDisplayScreen screen, CareerManagerAPI.OnCanConfirm? canConfirm = null,
         //      string? after = null, string? before = null)
         // A null CanEnter will default to CareerManagerAPI.AlwaysTrue

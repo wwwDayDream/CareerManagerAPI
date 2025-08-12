@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
-        <GameDir>C:\SteamLibrary\steamapps\common\Derail Valley</GameDir>
+        <GameDir>D:\Program Files (x86)\Steam\steamapps\common\Derail Valley</GameDir>
         <LangVersion>12</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>

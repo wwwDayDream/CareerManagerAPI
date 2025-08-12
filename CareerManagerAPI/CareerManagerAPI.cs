@@ -1,3 +1,4 @@
+using System;
 using DV.ServicePenalty.UI;
 using DV.UserManagement;
 using DV.Utils;
@@ -7,6 +8,10 @@ namespace CareerManagerAPI;
 
 public static class CareerManagerAPI
 {
+    public static event CareerManagerInitialized CareerManagerAwake;
+    public delegate void CareerManagerInitialized(CareerManagerScreenTracker tracker, string locationName, StationController? station, TrainCar? trainCar);
+    
+    [Obsolete]
     public static event CareerManagerMainScreenInitialized StationCareerManagerAwake;
     public delegate void CareerManagerMainScreenInitialized(CareerManagerScreenTracker screen, string stationName);
 
@@ -20,8 +25,9 @@ public static class CareerManagerAPI
         return (err = CareerManagerLocalization.UNAVAILABLE_IN_SANDBOX) == string.Empty;
     }
 
-    public static void OnStationCareerManagerAwake(CareerManagerScreenTracker screen, string stationname)
+    public static void OnStationCareerManagerAwake(CareerManagerScreenTracker tracker, StationController? station, TrainCar? trainCar, string locationName)
     {
-        StationCareerManagerAwake?.Invoke(screen, stationname);
+        StationCareerManagerAwake?.Invoke(tracker, locationName);
+        CareerManagerAwake?.Invoke(tracker, locationName, station, trainCar);
     }
 }

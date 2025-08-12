@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using DV.ServicePenalty.UI;
 using HarmonyLib;
 using TMPro;
@@ -11,7 +13,21 @@ public static class CareerManagerMainScreenAwake
 {
     public static void Postfix(CareerManagerMainScreen __instance)
     {
-        __instance.gameObject.AddComponent<CareerManagerScreenTracker>().MainScreen = __instance;
+        var tracker = __instance.gameObject.AddComponent<CareerManagerScreenTracker>();
+        tracker.MainScreen = __instance;
+        var trainCarInteriorObjectInParent = __instance.gameObject.GetComponentInParent<TrainCarInteriorObject>();
+        if (trainCarInteriorObjectInParent != null)
+        {
+            tracker.TrainCar = trainCarInteriorObjectInParent.actualTrainCar;
+            tracker.ManagerLocation = trainCarInteriorObjectInParent.actualTrainCar.carType.ToString();
+            tracker.ManagerLocation = Regex.Replace(tracker.ManagerLocation, "(?<!^)([A-Z])", " $1");
+        }
+        else
+        {
+            tracker.StationController = StationController.allStations.Select((station) =>
+                (station, dist: Vector3.Distance(station.transform.position, __instance.transform.position))).OrderBy(it => it.dist).First().station;
+            tracker.ManagerLocation = tracker.StationController.stationInfo.Name;
+        }
     }
 }
 [HarmonyPatch(typeof(CareerManagerMainScreen), nameof(CareerManagerMainScreen.Activate))]
