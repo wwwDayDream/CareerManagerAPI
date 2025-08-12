@@ -11,7 +11,7 @@ public static class CareerManagerAPI
     public static event CareerManagerInitialized CareerManagerAwake;
     public delegate void CareerManagerInitialized(CareerManagerScreenTracker tracker, string locationName, StationController? station, TrainCar? trainCar);
     
-    [Obsolete]
+    [Obsolete($"{nameof(StationCareerManagerAwake)} is deprecated, please use {nameof(CareerManagerAwake)} instead.")]
     public static event CareerManagerMainScreenInitialized StationCareerManagerAwake;
     public delegate void CareerManagerMainScreenInitialized(CareerManagerScreenTracker screen, string stationName);
 
