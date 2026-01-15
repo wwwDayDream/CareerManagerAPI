@@ -52,7 +52,7 @@ CareerManagerAPI.CareerManagerAwake += (tracker, locationName, station, trainCar
         //      string? after = null, string? before = null)
         // A null CanEnter will default to CareerManagerAPI.AlwaysTrue
         // Defining *a* 'before' OR(not both) 'after' string will place your option before or after another option.  
-        screen.TryAddToMainScreen<MyScreen>("Test", CanEnter, before: CareerManagerLocalization.FEES);
+        tracker.TryAddToMainScreen<MyScreen>("Test", CanEnter, before: CareerManagerLocalization.FEES);
     }
 };
 ```
